@@ -1,0 +1,17 @@
+E:\00\WebGL\App1\App1\bin\Debug\ReverseMap\resources.pri
+E:\00\WebGL\App1\App1\bin\Debug\AppxManifest.xml
+E:\00\WebGL\App1\App1\bin\Debug\App1.build.appxrecipe
+E:\00\WebGL\App1\App1\bld\Debug\App1.jsproj.CoreCompileInputs.cache
+E:\00\WebGL\App1\App1\bld\Debug\ResourceHandlingTask.state
+E:\00\WebGL\App1\App1\bld\Debug\priconfig.xml
+E:\00\WebGL\App1\App1\bld\Debug\priconfig.xml.intermediate
+E:\00\WebGL\App1\App1\bld\Debug\layout.resfiles
+E:\00\WebGL\App1\App1\bld\Debug\layout.resfiles.intermediate
+E:\00\WebGL\App1\App1\bld\Debug\resources.resfiles
+E:\00\WebGL\App1\App1\bld\Debug\resources.resfiles.intermediate
+E:\00\WebGL\App1\App1\bld\Debug\pri.resfiles
+E:\00\WebGL\App1\App1\bld\Debug\pri.resfiles.intermediate
+E:\00\WebGL\App1\App1\bld\Debug\qualifiers.txt
+E:\00\WebGL\App1\App1\bld\Debug\qualifiers.txt.intermediate
+E:\00\WebGL\App1\App1\bld\Debug\MultipleQualifiersPerDimensionFound.txt
+E:\00\WebGL\App1\App1\bld\Debug\ProjectArchitectures.txt

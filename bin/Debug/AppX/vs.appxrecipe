@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Machine>TABIBI-LENOVO</Machine>
+    <WindowsUser>Tabibi</WindowsUser>
+    <TargetPlatformIdentifier>UAP</TargetPlatformIdentifier>
+    <TargetOsVersion>10.0</TargetOsVersion>
+    <TargetOsDescription>Windows 10.0</TargetOsDescription>
+    <SolutionConfiguration>Debug|AnyCPU</SolutionConfiguration>
+    <PackageArchitecture>neutral</PackageArchitecture>
+    <PackageIdentityName>d1247c7c-1bec-48b8-b819-c8a60adb846a</PackageIdentityName>
+    <PackageIdentityPublisher>CN=Tabibi</PackageIdentityPublisher>
+    <IntermediateOutputPath>E:\00\WebGL\App1\App1\bld\Debug\</IntermediateOutputPath>
+    <RemoteDeploymentType>
+    </RemoteDeploymentType>
+    <PackageRegistrationPath>
+    </PackageRegistrationPath>
+    <RemoveNonLayoutFiles>true</RemoveNonLayoutFiles>
+    <DeployOptionalPackages>false</DeployOptionalPackages>
+    <WindowsSdkPath>
+    </WindowsSdkPath>
+    <LayoutDir>E:\00\WebGL\App1\App1\bin\Debug\AppX</LayoutDir>
+    <RegisteredManifestChecksum>4E1808A8388E1C51D45903388D116B423CC3FE4AB22C5EAA97277EAEE66F5844</RegisteredManifestChecksum>
+    <RegisteredPackageMoniker>d1247c7c-1bec-48b8-b819-c8a60adb846a_1.0.0.0_neutral__23k31fht7gdfw</RegisteredPackageMoniker>
+    <RegisteredUserModeAppID>d1247c7c-1bec-48b8-b819-c8a60adb846a_23k31fht7gdfw!App</RegisteredUserModeAppID>
+    <RegisteredPackageID>d1247c7c-1bec-48b8-b819-c8a60adb846a</RegisteredPackageID>
+    <RegisteredPackagePublisher>CN=Tabibi</RegisteredPackagePublisher>
+    <RegisteredVersion>1.0.0.0</RegisteredVersion>
+    <JitOptimizationSuppressed>True</JitOptimizationSuppressed>
+  </PropertyGroup>
+  <ItemGroup>
+    <AppXManifest Include="E:\00\WebGL\App1\App1\bin\Debug\AppxManifest.xml">
+      <PackagePath>AppxManifest.xml</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-08T10:23:40.282</Modified>
+    </AppXManifest>
+  </ItemGroup>
+  <ItemGroup>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\index.html">
+      <PackagePath>index.html</PackagePath>
+      <Modified>2018-04-08T08:31:26.454</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\LockScreenLogo.scale-200.png">
+      <PackagePath>images\LockScreenLogo.scale-200.png</PackagePath>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\SplashScreen.scale-200.png">
+      <PackagePath>images\SplashScreen.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\Square150x150Logo.scale-200.png">
+      <PackagePath>images\Square150x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\Square44x44Logo.scale-200.png">
+      <PackagePath>images\Square44x44Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\Square44x44Logo.targetsize-24_altform-unplated.png">
+      <PackagePath>images\Square44x44Logo.targetsize-24_altform-unplated.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\StoreLogo.png">
+      <PackagePath>images\StoreLogo.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\images\Wide310x150Logo.scale-200.png">
+      <PackagePath>images\Wide310x150Logo.scale-200.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-03T04:18:00.248</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\js\main.js">
+      <PackagePath>js\main.js</PackagePath>
+      <Modified>2018-04-08T10:47:47.026</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.intellisense.js">
+      <PackagePath>Scripts\jquery-3.3.1.intellisense.js</PackagePath>
+      <Modified>2018-01-22T08:01:38.000</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.js">
+      <PackagePath>Scripts\jquery-3.3.1.js</PackagePath>
+      <Modified>2018-04-08T06:41:10.230</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.min.js">
+      <PackagePath>Scripts\jquery-3.3.1.min.js</PackagePath>
+      <Modified>2018-04-08T06:41:09.973</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.slim.js">
+      <PackagePath>Scripts\jquery-3.3.1.slim.js</PackagePath>
+      <Modified>2018-04-08T06:41:09.488</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.slim.min.js">
+      <PackagePath>Scripts\jquery-3.3.1.slim.min.js</PackagePath>
+      <Modified>2018-04-08T06:41:09.218</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\css\default.css">
+      <PackagePath>css\default.css</PackagePath>
+      <Modified>2018-04-08T06:15:55.057</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\packages.config">
+      <PackagePath>packages.config</PackagePath>
+      <Modified>2018-04-08T06:41:10.898</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.min.map">
+      <PackagePath>Scripts\jquery-3.3.1.min.map</PackagePath>
+      <Modified>2018-04-08T06:41:09.717</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\Scripts\jquery-3.3.1.slim.min.map">
+      <PackagePath>Scripts\jquery-3.3.1.slim.min.map</PackagePath>
+      <Modified>2018-04-08T06:41:08.372</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="E:\00\WebGL\App1\App1\bin\Debug\ReverseMap\resources.pri">
+      <PackagePath>resources.pri</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+      <Modified>2018-04-08T10:23:39.927</Modified>
+    </AppxPackagedFile>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+</Project>
