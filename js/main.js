@@ -1,12 +1,12 @@
 ﻿/// <reference path="gl-matrix.js" />
 
 var gl;
-$(document).ready(function () {
-    var canvas = $("#renderCanvas").get(0);
-    gl = canvas.getContext("webgl2");
 
-    
-    var traingleVerticesAndColors = [
+function createTriangle() {
+
+    triangle = {};
+
+    triangle.traingleVerticesAndColors = [
         1.0,  -1.0, 0.0,  1.0, 0.0, 0.0, 1.0,
         0.0,   1.0, 0.0,  0.0, 1.0, 0.0, 1.0,
         -1.0, -1.0, 0.0,  0.0, 0.0, 1.0, 1.0
@@ -14,59 +14,88 @@ $(document).ready(function () {
 
    
 
-    var traingleVertexBuffer = gl.createBuffer(); //Create Buffer on gpu and return it's pointer to me!
-    gl.bindBuffer(gl.ARRAY_BUFFER, traingleVertexBuffer); //Bind the just created buffer to gl.ARRAY_BUFFER. With this we can fill our buffer using gl.ARRAY_BUFFER
-    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(traingleVerticesAndColors), gl.STATIC_DRAW); //Now fill gl.ARRAY_BUFFER with our vertices that means traingleVerticesAndColors has our vertices now
+    triangle.traingleVertexBuffer = gl.createBuffer(); //Create Buffer on gpu and return it's pointer to me!
+    gl.bindBuffer(gl.ARRAY_BUFFER, triangle.traingleVertexBuffer); //Bind the just created buffer to gl.ARRAY_BUFFER. With this we can fill our buffer using gl.ARRAY_BUFFER
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(triangle.traingleVerticesAndColors), gl.STATIC_DRAW); //Now fill gl.ARRAY_BUFFER with our vertices that means traingleVerticesAndColors has our vertices now
 
    
     //-----------Init shaders-----------------
-    var vertexSahder   = getAndCompileShader("#vertexShader",gl.VERTEX_SHADER);
-    var fragmentShader = getAndCompileShader("#fragmentShader",gl.FRAGMENT_SHADER);
+    triangle.vertexSahder   = getAndCompileShader("#vertexShader",gl.VERTEX_SHADER);
+    triangle.fragmentShader = getAndCompileShader("#fragmentShader",gl.FRAGMENT_SHADER);
  
-    var programShader = gl.createProgram();
-    gl.attachShader(programShader, vertexSahder);
-    gl.attachShader(programShader, fragmentShader);
-    gl.linkProgram(programShader);
+    triangle.programShader = gl.createProgram();
+    gl.attachShader(triangle.programShader, triangle.vertexSahder);
+    gl.attachShader(triangle.programShader, triangle.fragmentShader);
+    gl.linkProgram(triangle.programShader);
 
-    if (!gl.getProgramParameter(programShader, gl.LINK_STATUS)) {
+    if (!gl.getProgramParameter(triangle.programShader, gl.LINK_STATUS)) {
         alert("Erro to link program shader. See the console log.");
-        console.log(gl.getProgramInfoLog(programShader));
+        console.log(gl.getProgramInfoLog(triangle.programShader));
     }
 
-   
-    gl.useProgram(programShader);
+    gl.useProgram(triangle.programShader);
 
-    var vao = gl.createVertexArray();
-    gl.bindVertexArray(vao);
 
-    const FLOATSIZE = 4;
+    triangle.vao = gl.createVertexArray();
+    gl.bindVertexArray(triangle.vao);
+
+  
+    var FLOATSIZE = 4;
     
-    var positionAttrLocation = gl.getAttribLocation(programShader, "position");
-    var colorAttrLocation    = gl.getAttribLocation(programShader, "color");
+    triangle.positionAttrLocation = gl.getAttribLocation(triangle.programShader, "position");
+    triangle.colorAttrLocation    = gl.getAttribLocation(triangle.programShader, "color");
     
-    gl.bindBuffer(gl.ARRAY_BUFFER ,traingleVertexBuffer);
+ 
 
-    gl.enableVertexAttribArray(positionAttrLocation);
+    gl.bindBuffer(gl.ARRAY_BUFFER ,triangle.traingleVertexBuffer);
+
+    gl.enableVertexAttribArray(triangle.positionAttrLocation);
     //void gl.vertexAttribPointer(index, size, type,normalize , stride, offset)
-    gl.vertexAttribPointer(positionAttrLocation, 3, gl.FLOAT,false, FLOATSIZE*7, 0);
+    gl.vertexAttribPointer(triangle.positionAttrLocation, 3, gl.FLOAT,false, FLOATSIZE*7, 0);
 
    
-    gl.enableVertexAttribArray(colorAttrLocation);
+    gl.enableVertexAttribArray(triangle.colorAttrLocation);
     //void gl.vertexAttribPointer(index, size, type,normalize, stride, offset) 
-    gl.vertexAttribPointer(colorAttrLocation, 4, gl.FLOAT,false, FLOATSIZE*7, FLOATSIZE*3);
+    gl.vertexAttribPointer(triangle.colorAttrLocation, 4, gl.FLOAT,false, FLOATSIZE*7, FLOATSIZE*3);
+   
 
-    //--------Drawing---------------
+    triangle.modelMatrix = mat4.create();
+    triangle.modelMatrixLocation = gl.getUniformLocation(triangle.programShader, "modelMatrix");
 
-    var modelMatrix = mat4.create();
+    //--
+    triangle.draw = function(angle, position){
+        mat4.identity(triangle.modelMatrix);
+        mat4.translate(triangle.modelMatrix,triangle.modelMatrix,position);
+       // mat4.fromTranslation(modelMatrix, [0, 0, -7]);
+        //mat4.fromYRotation(modelMatrix, angle);
+        mat4.rotateY(triangle.modelMatrix,triangle.modelMatrix,angle);
+        gl.uniformMatrix4fv(triangle.modelMatrixLocation, false, triangle.modelMatrix);
+
+        gl.bindVertexArray(triangle.vao);
+        
+        gl.useProgram(triangle.programShader);
+        gl.drawArrays(gl.TRIANGLES,0,3);
+    };
+
+    return triangle;
+}
+
+$(document).ready(function () {
+    var canvas = $("#renderCanvas").get(0);
+    gl = canvas.getContext("webgl2");
+
+    var triangle = createTriangle();
+   
+  
     var viewMatrix = mat4.create();
     var projectionMatrix = mat4.create();
 
     mat4.perspective(projectionMatrix, 45* Math.PI/180.0, canvas.width/canvas.height, 0.1 , 10.0);
     //mat4.ortho(projectionMatrix,-2,2,-2,2,-10,10);
 
-    var modelMatrixLocation = gl.getUniformLocation(programShader, "modelMatrix");
-    var viewMatrixLocation = gl.getUniformLocation(programShader, "viewMatrix");
-    var projectionMatrixLocation = gl.getUniformLocation(programShader, "projectionMatrix");
+    
+    var viewMatrixLocation = gl.getUniformLocation(triangle.programShader, "viewMatrix");
+    var projectionMatrixLocation = gl.getUniformLocation(triangle.programShader, "projectionMatrix");
 
     gl.uniformMatrix4fv(projectionMatrixLocation, false, projectionMatrix);
     gl.uniformMatrix4fv(viewMatrixLocation, false, viewMatrix);
@@ -79,22 +108,14 @@ $(document).ready(function () {
 
     function runRenderLoop() {
 
-        mat4.identity(modelMatrix);
-        mat4.translate(modelMatrix,modelMatrix,[0,0,-7]);
-       // mat4.fromTranslation(modelMatrix, [0, 0, -7]);
-        //mat4.fromYRotation(modelMatrix, angle);
-        mat4.rotateY(modelMatrix,modelMatrix,angle);
-        gl.uniformMatrix4fv(modelMatrixLocation, false, modelMatrix);
-        angle += 0.1;
-
         gl.clearColor(0, 0, 0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        gl.bindVertexArray(vao);
-        
-        gl.useProgram(programShader);
-        gl.drawArrays(gl.TRIANGLES,0,3);
-
+        triangle.draw(angle, [1,-1,-7]);
+        triangle.draw(angle, [-1,-1,-7]);
+        triangle.draw(angle, [1,1,-7]);
+        triangle.draw(angle, [-1,1,-7]);
+        angle += 0.1;     
       
         requestAnimationFrame(runRenderLoop);
     }
