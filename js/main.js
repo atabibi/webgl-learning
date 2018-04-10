@@ -74,7 +74,8 @@ function createTriangle() {
         gl.bindVertexArray(triangle.vao);
         
         gl.useProgram(triangle.programShader);
-        gl.drawArrays(gl.TRIANGLES,0,3);
+        //gl.drawArrays(gl.TRIANGLES,0,3);
+        gl.drawArraysInstanced(gl.TRIANGLES,0,3,3);
     };
 
     return triangle;
@@ -99,6 +100,9 @@ $(document).ready(function () {
 
     gl.uniformMatrix4fv(projectionMatrixLocation, false, projectionMatrix);
     gl.uniformMatrix4fv(viewMatrixLocation, false, viewMatrix);
+
+    var offsetsLocation = gl.getUniformLocation(triangle.programShader, "offsets");
+    gl.uniform3fv(offsetsLocation, [-2,0,2]);
     
 
 
@@ -111,8 +115,8 @@ $(document).ready(function () {
         gl.clearColor(0, 0, 0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
-        triangle.draw(angle, [1,-1,-7]);
-        triangle.draw(angle, [-1,-1,-7]);
+        // triangle.draw(angle, [1,-1,-7]);
+        // triangle.draw(angle, [-1,-1,-7]);
         triangle.draw(angle, [1,1,-7]);
         triangle.draw(angle, [-1,1,-7]);
         angle += 0.1;     

@@ -23,9 +23,11 @@
         uniform mat4 viewMatrix;
         uniform mat4 projectionMatrix;
 
+        uniform vec3 offsets; //for using instancs
+
         void main()
         {
-            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position, 1);
+            gl_Position = projectionMatrix * viewMatrix * modelMatrix * vec4(position.x + offsets[gl_InstanceID],position.yz, 1);
             fcolor = color;
         }
     </script>
