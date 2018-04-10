@@ -1,4 +1,4 @@
-﻿// Your code here!
+﻿/// <reference path="gl-matrix.js" />
 
 var gl;
 $(document).ready(function () {
@@ -7,10 +7,12 @@ $(document).ready(function () {
 
     
     var traingleVerticesAndColors = [
-        1.0,  -1.0, 0.1,  1.0, 0.0, 0.0, 1.0,
-        0.0,   1.0, 0.1,  0.0, 1.0, 0.0, 1.0,
-        -1.0, -1.0, 0.1,  0.0, 0.0, 1.0, 1.0
+        1.0,  -1.0, 0.0,  1.0, 0.0, 0.0, 1.0,
+        0.0,   1.0, 0.0,  0.0, 1.0, 0.0, 1.0,
+        -1.0, -1.0, 0.0,  0.0, 0.0, 1.0, 1.0
     ];
+
+   
 
     var traingleVertexBuffer = gl.createBuffer(); //Create Buffer on gpu and return it's pointer to me!
     gl.bindBuffer(gl.ARRAY_BUFFER, traingleVertexBuffer); //Bind the just created buffer to gl.ARRAY_BUFFER. With this we can fill our buffer using gl.ARRAY_BUFFER
@@ -54,9 +56,37 @@ $(document).ready(function () {
     gl.vertexAttribPointer(colorAttrLocation, 4, gl.FLOAT,false, FLOATSIZE*7, FLOATSIZE*3);
 
     //--------Drawing---------------
+
+    var modelMatrix = mat4.create();
+    var viewMatrix = mat4.create();
+    var projectionMatrix = mat4.create();
+
+    mat4.perspective(projectionMatrix, 45* Math.PI/180.0, canvas.width/canvas.height, 0.1 , 10.0);
+    //mat4.ortho(projectionMatrix,-2,2,-2,2,-10,10);
+
+    var modelMatrixLocation = gl.getUniformLocation(programShader, "modelMatrix");
+    var viewMatrixLocation = gl.getUniformLocation(programShader, "viewMatrix");
+    var projectionMatrixLocation = gl.getUniformLocation(programShader, "projectionMatrix");
+
+    gl.uniformMatrix4fv(projectionMatrixLocation, false, projectionMatrix);
+    gl.uniformMatrix4fv(viewMatrixLocation, false, viewMatrix);
+    
+
+
+    var angle = 0.1;
+
     requestAnimationFrame(runRenderLoop);
 
     function runRenderLoop() {
+
+        mat4.identity(modelMatrix);
+        mat4.translate(modelMatrix,modelMatrix,[0,0,-7]);
+       // mat4.fromTranslation(modelMatrix, [0, 0, -7]);
+        //mat4.fromYRotation(modelMatrix, angle);
+        mat4.rotateY(modelMatrix,modelMatrix,angle);
+        gl.uniformMatrix4fv(modelMatrixLocation, false, modelMatrix);
+        angle += 0.1;
+
         gl.clearColor(0, 0, 0, 1.0);
         gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
 
